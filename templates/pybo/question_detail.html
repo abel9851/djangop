@@ -3,7 +3,14 @@
 <div>
     {{ question.content }}
 </div>
-
+<h5>{{ question.answer_set.count }}개의 답변이 있습니다. <!--count함수는 숫자를 1부터 센다.-->
+<div>
+    <ul>
+        {% for answer in question.answer_set.all %}
+            <li>{{ answer.content }}</li>
+        {% endfor %}
+    </ul>
+</div>
 
 <form action="{% url 'pybo:answer_create' question.id %}" method='post'>
     {% csrf_token %}
