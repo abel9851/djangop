@@ -60,4 +60,6 @@ def question_create(request):
     else:
         form = QuestionForm()
     context = {"form": form}
-    return render(request, "pybo/question_form.html", context)
+    return render(
+        request, "pybo/question_form.html", context
+    )  # render는 했지만, html 탬플릿파일에서 form.as_p와 같이 form직접 쓰지 않았기 때문에 html 템플릿파일에 쓴 form태그 안에 있는 코드가 적용된다.
