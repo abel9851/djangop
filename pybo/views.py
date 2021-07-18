@@ -1,5 +1,5 @@
-from django.core import paginator
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 from django.shortcuts import redirect, render, get_object_or_404
 from .models import Question
 from django.utils import timezone
@@ -76,3 +76,27 @@ def question_create(request):
     return render(
         request, "pybo/question_form.html", context
     )  # render는 했지만, html 탬플릿파일에서 form.as_p와 같이 form직접 쓰지 않았기 때문에 html 템플릿파일에 쓴 form태그 안에 있는 코드가 적용된다.
+
+
+@login_required(login_url="common:login")
+def question_modify(request, question_id):
+    """
+    pybo 질문수정
+    """
+    question = get_object_or_404(Question, pk=question_id)
+    if request.user != question.author:
+        messages.error(request, "수정권한이 없습니다")
+        return redirect("pybo:detail", question_id=question.id)
+
+    if request.method == "POST":
+        form = QuestionForm(request.POST, instance=question)
+        if form.is_valid():
+            question = form.save(commit=False)
+            question.author = request.user
+            question.modify_date = timezone.now()  # 수정일시 저장
+            question.save()
+
+    else:
+        form = QuestionForm(instance=question)
+    context = {"form": form}
+    return render(request, "pybo/question_form.html", context)
