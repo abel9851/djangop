@@ -1,4 +1,5 @@
 from django.core import paginator
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render, get_object_or_404
 from .models import Question
 from django.utils import timezone
@@ -34,6 +35,7 @@ def detail(request, question_id):
     return render(request, "pybo/question_detail.html", context)
 
 
+@login_required(login_url="common:login")
 def answer_create(request, question_id):
     """
     pybo 답변 등록
@@ -43,6 +45,7 @@ def answer_create(request, question_id):
         form = AnswerForm(request.POST)
         if form.is_valid():
             answer = form.save(commit=False)
+            answer.author = request.user  # 추가한 속성 author 적용
             answer.create_date = timezone.now()
             answer.question = question
             answer.save()
@@ -53,6 +56,7 @@ def answer_create(request, question_id):
     return render(request, "pybo/question_detail.html", context)
 
 
+@login_required(login_url="common:login")
 def question_create(request):
     """
     pybo 질문 등록
@@ -62,6 +66,7 @@ def question_create(request):
 
         if form.is_valid():  # post로 받은 데이터가 유효한지 검사.
             question = form.save(commit=False)  # 임시저장. 이유는 create_date가 비어있어서.
+            question.author = request.user
             question.create_date = timezone.now()
             question.save()
             return redirect("pybo:index")
