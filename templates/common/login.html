@@ -4,10 +4,10 @@
     <div class="container my-3">
         <div class="row">
             <div class="col-4">
-                <h4>로그인</h4>
+                <h4>ログイン</h4>
             </div>
             <div class="col-8 text-right">
-                <span>또는 <a href="{% url 'common:signup' %}">계정을 만드세요.</a></span>
+                <span>または <a href="{% url 'common:signup' %}">アカウントを作ってください</a></span>
             </div>
 
         </div>
@@ -16,14 +16,14 @@
             <input type="hidden" name='next' value="{{ next }}"> <!-- 로그인 성공 후 이동되는 URL -->
             {% include "form_errors.html" %}
             <div class="form-group">
-                <label for="username">사용자ID</label>
+                <label for="username">ID</label>
                 <input type="text" class="form-control" name="username" id="username" value="{{ form.username.value|default_if_none:'' }}">
             </div>
             <div class="form-group">
-                <label for="password">비밀번호</label>
+                <label for="password">パスワード</label>
                 <input type="password" class="form-control" name="password" id="password" value="{{ form.password.value|default_if_none:'' }}">
             </div>
-            <button type="submit" class="btn btn-primary">로그인</button>
+            <button type="submit" class="btn btn-primary">ログイン</button>
         </form>
     </div>
 {% endblock %}

@@ -6,10 +6,10 @@
     <table class="table">
         <thread>
             <tr class="text-center thead-dark">
-                <th>번호</th>
-                <th style="width:50%">제목</th>
-                <th>글쓴이</th>
-                <th>작성일시</th>
+                <th>No.</th>
+                <th style="width:50%">タイトル</th>
+                <th>作成者</th>
+                <th>作成日時</th>
             </tr>
         </thread>
         <tbody>
@@ -30,7 +30,7 @@
             {% endfor %}
             {% else %}
             <tr>
-                <td colspan="3">질문이 없습니다.</td>
+                <td colspan="3">質問がありません</td>
             </tr>
             {% endif %}
         </tbody>
@@ -40,11 +40,11 @@
         <!-- 이전 페이지 -->
         {% if question_list.has_previous %}
             <li class="page-item">
-                <a class="page-link" href="?page={{ question_list.previous_page_number }}">이전</a>
+                <a class="page-link" href="?page={{ question_list.previous_page_number }}">以前</a>
             </li>
         {% else %}
             <li class="page-item disabled">
-                <a class="page-link" tabindex="-1" aria-disabled="true" href="#">이전</a>
+                <a class="page-link" tabindex="-1" aria-disabled="true" href="#">以前</a>
             </li>
         {% endif %}
         <!-- 페이지리스트 -->
@@ -64,15 +64,15 @@
         <!-- 다음 페이지 -->
         {% if question_list.has_next %}
             <li class="page-item">
-                <a class="page-link" href="?page={{ question_list.next_page_number }}">다음</a>
+                <a class="page-link" href="?page={{ question_list.next_page_number }}">次</a>
             </li>
         {% else %}
             <li class="page-item disabled">
-                <a class="page-link" tabindex="-1" aria-disabled="true" href="#">다음</a>
+                <a class="page-link" tabindex="-1" aria-disabled="true" href="#">次</a>
             </li>
         {% endif %}
     </ul>
     <!-- 페이징 처리 끝  -->
-    <a href="{% url 'pybo:question_create' %}" class="btn btn-primary">질문 등록하기</a>
+    <a href="{% url 'pybo:question_create' %}" class="btn btn-primary">質問登録</a>
 </div>
 {% endblock %}

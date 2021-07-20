@@ -28,9 +28,9 @@
             {% if request.user == question.author %}
             <div class="my-3">
                 <a href="{% url 'pybo:question_modify' question.id %}" 
-                class="btn btn-sm btn-outline-secondary">수정</a>
+                class="btn btn-sm btn-outline-secondary">修正</a>
                 <a href="#" class="delete btn btn-sm btn-outline-secondary"
-                data-uri="{% url 'pybo:question_delete' question.id %}">삭제</a>
+                data-uri="{% url 'pybo:question_delete' question.id %}">削除</a>
             </div>
             {% endif %}
             
@@ -42,13 +42,13 @@
                             <span>
                                 - {{ comment.author }}, {{ comment.create_date }}
                                 {% if comment.modify_date %}
-                                    (수정: {{ comment.modify_date }})
+                                    (修正: {{ comment.modify_date }})
                                 {% endif %}
                             </span>
                             {% if request.user == comment.author %}
-                                <a href="{% url 'pybo:comment_modify_question' comment.id %}" class="small">수정</a>
+                                <a href="{% url 'pybo:comment_modify_question' comment.id %}" class="small">修正</a>
                                 <a href="#" class="small delete"
-                                data-uri="{% url 'pybo:comment_delete_question' comment.id %}">삭제</a>
+                                data-uri="{% url 'pybo:comment_delete_question' comment.id %}">削除</a>
                             {% endif %}
                         </div>
                     {% endfor %}
@@ -56,11 +56,11 @@
             {% endif %}
             <div>
                 <a href="{% url 'pybo:comment_create_question' question.id %}"
-                class="small"><small>댓글추가 ..</small></a>
+                class="small"><small>コメント追加。。</small></a>
             </div>
         </div>
     </div>
-    <h5 class="border-bottom my-3 py-2">{{ question.answer_set.count }}개의 답변이 있습니다.</h5>
+    <h5 class="border-bottom my-3 py-2">{{ question.answer_set.count }}個の回答があります</h5>
     {% for answer in question.answer_set.all %}
     <div class="card my-3">
         <div class="card-body">
@@ -80,9 +80,9 @@
             {% if request.user == answer.author %}
                 <div class="my-3">
                     <a href="{% url 'pybo:answer_modify' answer.id %}"
-                    class="btn btn-sm btn-outline-secondary">수정</a>
+                    class="btn btn-sm btn-outline-secondary">修正</a>
                     <a href="#" class="delete btn btn-sm btn-outline-secondary"
-                    data-uri="{% url 'pybo:answer_delete' answer.id %}">삭제</a>
+                    data-uri="{% url 'pybo:answer_delete' answer.id %}">削除</a>
                 </div>
             {% endif %}
             {% if answer.comment_set.count > 0 %}
@@ -93,13 +93,13 @@
                     <span>
                         - {{ comment.author }}, {{ comment.create_date }}
                         {% if comment.modify_date %}
-                            (수정: {{ comment.modify_date }})
+                            (修正: {{ comment.modify_date }})
                         {% endif %}
                     </span>
                     {% if request.user == comment.author %}
-                        <a href="{% url 'pybo:comment_modify_answer' comment.id %}">수정</a>
+                        <a href="{% url 'pybo:comment_modify_answer' comment.id %}">修正</a>
                         <a href="#" class="small delete"
-                        data-uri="{% url 'pybo:comment_delete_answer' comment.id %}">삭제</a>
+                        data-uri="{% url 'pybo:comment_delete_answer' comment.id %}">削除</a>
                     {% endif %}
                 </div>
             {% endfor %}
@@ -107,7 +107,7 @@
             {% endif %}
             <div>
                 <a href="{% url 'pybo:comment_create_answer' answer.id %}"
-                class ="small"><small>댓글 추가 ..</small></a>
+                class ="small"><small>コメント追加。。</small></a>
             </div>
         </div>
     </div>
@@ -132,7 +132,7 @@
             {% endif %}
             name="content" id="content" class="form-control" rows="10"></textarea>
         </div>
-        <input type="submit" value="답변등록" class="btn btn-primary">
+        <input type="submit" value="回答登録" class="btn btn-primary">
     </form>
 </div>
 {% endblock %}
@@ -141,7 +141,7 @@
     <script type="text/javascript">
         $(document).ready(function() {
             $(".delete").on('click', function() {
-                if(confirm("정말로 삭제하시겠습니까?")) {
+                if(confirm("本当に削除しますか?")) {
                     location.href = $(this).data('uri');
                 }
             });
