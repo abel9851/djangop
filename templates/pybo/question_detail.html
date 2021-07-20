@@ -93,7 +93,7 @@
                     <span>
                         - {{ comment.author }}, {{ comment.crate_date }}
                         {% if comment.modify_date %}
-                            (수정: {{ comment.modify }})
+                            (수정: {{ comment.modify_date }})
                         {% endif %}
                     </span>
                     {% if request.user == comment.author %}
