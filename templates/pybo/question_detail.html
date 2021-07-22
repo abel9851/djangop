@@ -14,7 +14,7 @@
     <h2 class="border-bottom py-2">{{ question.subject }}</h2>
     <div class="row my-3">
         <div class="col-1"> <!-- 추천 영역 -->
-            <div class="bg-light text-center p-3 border font-weight-bolder mb-1">{{ question.voter.count }}</div>
+            <div class="bg-light text-center p-3 border font-weight-bolder mb-1">{{ question.voter.all.count }}</div>
             <a href="#" data-uri="{% url 'pybo:vote_question' question.id %}"
             class="recommend btn btn-sm btn-secondary btn-block my-1">いいね</a>
         </div>
