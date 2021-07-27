@@ -26,14 +26,14 @@ def index(request):  # request는 장고에 의해 자동으로 전달되는 HTT
         )
     else:  # recent
         question_list = Question.objects.order_by("-create_date")
-    # 검색
 
+    # 검색
     if kw:
         question_list = question_list.filter(
-            Q(subject__icontains=kw)  # 제목 검색  icontains는 대,소문자 상관없이 안에 키워드를 포함하는 객체를 반환
-            | Q(content__icontains=kw)  # 내용 검색
-            | Q(author__username__icontains=kw)  # 질문 글쓴이 검색
-            | Q(answer__author__username__icontains=kw)  # 답변 글쓴이 검색
+            Q(subject__icontains=kw)
+            | Q(content__icontains=kw)  # 제목검색
+            | Q(author__username__icontains=kw)  # 내용검색
+            | Q(answer__author__username__icontains=kw)  # 질문 글쓴이검색  # 답변 글쓴이검색
         ).distinct()
 
     # 페이징 처리
