@@ -98,7 +98,7 @@
 </div>
 <form id="searchForm" method="get" action="{% url 'index' %}">
     <input type="hidden" id="kw" name="kw" value="{{ kw|default_if_none:'' }}"> <!-- value를 왜 사용하는지?-->
-    <input type="hidden" id="page" name="page" value="{{ page }}">
+    <input type="hidden" id="page" name="page" value="{{ page }}">  <!-- 사용하는 이유는, 아래의 자바스크립트로 보낼때 이전값이 필요한 경우가 있기 때문이다. 정렬할때에 검색한 값이 유지되게 하는 등.  -->
     <input type="hidden" id="so" name="so" value="{{ so }}">
 </form>
 {% endblock %}
