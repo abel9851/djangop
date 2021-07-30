@@ -5,7 +5,8 @@ from django.shortcuts import render, get_object_or_404
 from ..models import Question
 
 import logging
-logger = logging.getLogger('pybo')
+
+logger = logging.getLogger(__name__)
 
 
 def index(request):  # request는 장고에 의해 자동으로 전달되는 HTTP요청 객체이다.
