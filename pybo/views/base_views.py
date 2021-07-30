@@ -4,6 +4,9 @@ from django.shortcuts import render, get_object_or_404
 
 from ..models import Question
 
+import logging
+logger = logging.getLogger('pybo')
+
 
 def index(request):  # request는 장고에 의해 자동으로 전달되는 HTTP요청 객체이다.
     # request는 사용자가 전달한 데이터를 확인할 때 사용된다.
@@ -11,8 +14,7 @@ def index(request):  # request는 장고에 의해 자동으로 전달되는 HTT
     """
     pybo 목록 출력
     """
-
-    3 / 0
+    logger.info("INFO レベルで出力")
 
     page = request.GET.get("page", "1")  # 페이지
     kw = request.GET.get("kw", "")  # 검색어
